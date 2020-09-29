@@ -8,11 +8,14 @@ import M from 'materialize-css'
 import VisitDetails from './VisitDetails'
 
 class Dashboard extends Component {
+    //Finish Form and Push JSON to Database
     componentDidMount() {
         M.AutoInit();
 
     }
     state = {
+        status: "New",
+        rejectionReason: "",
         arg1: -1,
         step: 1,
         yourInfo: {
@@ -28,12 +31,10 @@ class Dashboard extends Component {
             time: "10:00",
             duration: "",
             purposeOfVisit: "",
-            completed: false
         },
         visitors: {
             savedVisitors: [],
             incmoingVisitors: [],
-            completed: false
         },
         vehicles: {
             type: "",
@@ -44,52 +45,66 @@ class Dashboard extends Component {
             liscense: "",
             registration: "",
             insurance: "",
-            completed: false
         },
         condtionsAgreed: false,
-        completed: false
+        completed: false,
+        cssStep1: "col s2 blue darken-3 white-text guideText",
+        cssStep2: "col s2 blue lighten-4 white-text guideText",
+        cssStep3: "col s2 blue lighten-4 white-text guideText",
+        cssStep4: "col s2 blue lighten-4 white-text guideText",
+        cssStep5: "col s2 blue lighten-4 white-text guideText",
+
 
 
     }
     changeColor = (step) => {
         var lightColor = "col s2 blue lighten-4 white-text guideText"
         var darkColor = "col s2 blue darken-3 white-text guideText"
-        document.getElementById("step1").className = lightColor
         if (step === 1) {
-            document.getElementById("step1").className = darkColor
-            document.getElementById("step2").className = lightColor
-            document.getElementById("step3").className = lightColor
-            document.getElementById("step4").className = lightColor
-            document.getElementById("step5").className = lightColor
+            this.setState({
+                cssStep1: darkColor,
+                cssStep2: lightColor,
+                cssStep3: lightColor,
+                cssStep4: lightColor,
+                cssStep5: lightColor,
+            })
 
         }
         if (step === 2) {
-            document.getElementById("step1").className = lightColor
-            document.getElementById("step2").className = darkColor
-            document.getElementById("step3").className = lightColor
-            document.getElementById("step4").className = lightColor
-            document.getElementById("step5").className = lightColor
+            this.setState({
+                cssStep1: lightColor,
+                cssStep2: darkColor,
+                cssStep3: lightColor,
+                cssStep4: lightColor,
+                cssStep5: lightColor,
+            })
         }
         if (step === 3) {
-            document.getElementById("step1").className = lightColor
-            document.getElementById("step2").className = lightColor
-            document.getElementById("step3").className = darkColor
-            document.getElementById("step4").className = lightColor
-            document.getElementById("step5").className = lightColor
+            this.setState({
+                cssStep1: lightColor,
+                cssStep2: lightColor,
+                cssStep3: darkColor,
+                cssStep4: lightColor,
+                cssStep5: lightColor,
+            })
         }
         if (step === 4) {
-            document.getElementById("step1").className = lightColor
-            document.getElementById("step2").className = lightColor
-            document.getElementById("step3").className = lightColor
-            document.getElementById("step4").className = darkColor
-            document.getElementById("step5").className = lightColor
+            this.setState({
+                cssStep1: lightColor,
+                cssStep2: lightColor,
+                cssStep3: lightColor,
+                cssStep4: darkColor,
+                cssStep5: lightColor,
+            })
         }
         if (step === 5) {
-            document.getElementById("step1").className = lightColor
-            document.getElementById("step2").className = lightColor
-            document.getElementById("step3").className = lightColor
-            document.getElementById("step4").className = lightColor
-            document.getElementById("step5").className = darkColor
+            this.setState({
+                cssStep1: lightColor,
+                cssStep2: lightColor,
+                cssStep3: lightColor,
+                cssStep4: lightColor,
+                cssStep5: darkColor,
+            })
         }
     }
     updateCheckBox = (state) => {
@@ -155,6 +170,7 @@ class Dashboard extends Component {
             return;
         }
         if (this.state.step === 5 && this.state.condtionsAgreed) {
+            console.log(this.state)
             window.alert("Done!")
             return;
         }
@@ -212,11 +228,11 @@ class Dashboard extends Component {
             <div className="container">
                 <br></br>
                 <div className="row">
-                    <div id="step1" className="col s2 blue darken-3 white-text guideText"><p>Your info</p></div>
-                    <div id="step2" className="col s2 blue lighten-4 white-text guideText"><p>Visit Details</p></div>
-                    <div id="step3" className="col s2 blue lighten-4 white-text guideText"><p>Visitors</p></div>
-                    <div id="step4" className="col s2 blue lighten-4 white-text guideText"><p>Vehicles</p></div>
-                    <div id="step5" className="col s2 blue lighten-4 white-text guideText"><p>Submit</p></div>
+                    <div id="step1" className={this.state.cssStep1}><p>Your info</p></div>
+                    <div id="step2" className={this.state.cssStep2}><p>Visit Details</p></div>
+                    <div id="step3" className={this.state.cssStep3}><p>Visitors</p></div>
+                    <div id="step4" className={this.state.cssStep4}><p>Vehicles</p></div>
+                    <div id="step5" className={this.state.cssStep5}><p>Submit</p></div>
                 </div>
                 <div className="row">
                     Component Will show up Here
